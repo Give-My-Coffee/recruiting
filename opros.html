@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видеоопросник</title>
+    <link rel="stylesheet" href="opros.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Видеоопросник</h1>
+        <div class="question-container">
+            <div class="question-box" id="question-box">
+                <p id="question-text">Нажмите "Начать", чтобы начать опрос</p>
+            </div>
+            <div class="video-container">
+                <video id="live-video" autoplay muted></video>
+                <video id="playback-video" controls></video>
+                <div id="video-placeholder">Подготовка к записи...</div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="btn">Начать</button>
+            <button id="next-btn" class="btn" disabled>Следующий вопрос</button>
+            <button id="finish-btn" class="btn" disabled>Завершить</button>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+            <span id="progress-text">Вопрос 0 из 0</span>
+        </div>
+    </div>
+
+    <script src="opros.js"></script>
+</body>
+</html>

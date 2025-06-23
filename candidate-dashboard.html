@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кадры</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">R</div>
+                    <span class="company-name">Кадры</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Поиск...">
+                </div>
+                <button class="settings-btn">
+                    <i class="material-icons">settings</i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+                        <!-- Боковое меню -->
+<aside class="sidebar menu">
+    <div class="menu-section">
+        <a href="index.html" class="menu-item">
+            <i class="material-icons">home</i>
+            <span>Главная страница</span>
+        </a>
+        <a href="tasks.html" class="menu-item">
+            <i class="material-icons">assignment</i>
+            <span>Задачи</span>
+        </a>
+        <a href="calendar.html" class="menu-item">
+            <i class="material-icons">calendar_today</i>
+            <span>Календарь</span>
+        </a>
+        <a href="candidate-dashboard.html" class="menu-item">
+            <i class="material-icons">work</i>
+            <span>Вакансии</span>
+        </a>
+        <a href="employees.html" class="menu-item">
+            <i class="material-icons">people</i>
+            <span>Сотрудники</span>
+        </a>
+        <a href="interviews.html" class="menu-item">
+            <i class="material-icons">record_voice_over</i>
+            <span>Интервью</span>
+        </a>
+        <a href="reports.html" class="menu-item">
+            <i class="material-icons">assessment</i>
+            <span>Отчёты</span>
+        </a>
+
+    </div>
+</aside>
+
+<div class="content-area">
+    <!-- Верхнее меню разделов -->
+    <div class="section-menu">
+        <div class="section-tab" data-section="vacancies">Вакансии</div>
+        <div class="section-tab active" data-section="candidates">Кандидаты</div>
+        <div class="section-tab" data-section="tests">Тесты</div>
+    </div>
+
+
+                <!-- Горизонтальное меню статусов -->
+                <div class="status-menu">
+                    <div class="status-tab active" data-status="all">Все</div>
+                    <div class="status-tab" data-status="new">Новые</div>
+                    <div class="status-tab" data-status="client">У клиента</div>
+                    <div class="status-tab" data-status="interview">Собеседование</div>
+                    <div class="status-tab" data-status="offer">Оффер</div>
+                    <div class="status-tab" data-status="work">Принят</div>
+                    <div class="status-tab" data-status="reject">Отказ</div>
+                    <div class="sort-btn">
+                        <i class="material-icons">sort</i>
+                        Сортировка
+                    </div>
+                </div>
+
+                <!-- Трехколоночный контент -->
+                <div class="three-column-layout">
+                    <!-- Колонка со списком кандидатов -->
+                    <div class="candidates-column">
+                        <div class="candidate-card active" data-candidate="1" data-status="new">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="candidate-photo" alt="Иван Иванов">
+                            <div class="candidate-info">
+                                <h3>Иванов И.П.</h3>
+                                <p>Frontend-разработчик</p>
+                                <span class="candidate-status status-new">Новый</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="2" data-status="client">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="candidate-photo" alt="Анна Петрова">
+                            <div class="candidate-info">
+                                <h3>Петрова А.К.</h3>
+                                <p>HR-менеджер</p>
+                                <span class="candidate-status status-client">У клиента</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="3" data-status="interview">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" class="candidate-photo" alt="Михаил Сидорович">
+                            <div class="candidate-info">
+                                <h3>Сидорович М.В.</h3>
+                                <p>Backend-разработчик</p>
+                                <span class="candidate-status status-interview">Собеседование</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="4" data-status="offer">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg" class="candidate-photo" alt="Елена Кузнецова">
+                            <div class="candidate-info">
+                                <h3>Кузнецова Е.П.</h3>
+                                <p>Дизайнер UX/UI</p>
+                                <span class="candidate-status status-offer">Оффер</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="5" data-status="work">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="candidate-photo" alt="Дмитрий Новик">
+                            <div class="candidate-info">
+                                <h3>Новик Д.А.</h3>
+                                <p>Java-разработчик</p>
+                                <span class="candidate-status status-work">Принят</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="6" data-status="reject">
+                            <img src="https://randomuser.me/api/portraits/women/63.jpg" class="candidate-photo" alt="Ольга Семёнова">
+                            <div class="candidate-info">
+                                <h3>Семёнова О.И.</h3>
+                                <p>Маркетолог</p>
+                                <span class="candidate-status status-reject">Отказ</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="7" data-status="new">
+                            <img src="https://randomuser.me/api/portraits/men/81.jpg" class="candidate-photo" alt="Александр Корович">
+                            <div class="candidate-info">
+                                <h3>Корович А.М.</h3>
+                                <p>Проджект-менеджер</p>
+                                <span class="candidate-status status-new">Новый</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="8" data-status="client">
+                            <img src="https://randomuser.me/api/portraits/women/85.jpg" class="candidate-photo" alt="Екатерина Лукьяненко">
+                            <div class="candidate-info">
+                                <h3>Лукьяненко Е.Д.</h3>
+                                <p>Аналитик данных</p>
+                                <span class="candidate-status status-client">У клиента</span>
+                            </div>
+                        </div>
+                        <div class="candidate-card" data-candidate="9" data-status="interview">
+                            <img src="https://randomuser.me/api/portraits/men/90.jpg" class="candidate-photo" alt="Артём Лебедев">
+                            <div class="candidate-info">
+                                <h3>Лебедев А.С.</h3>
+                                <p>DevOps инженер</p>
+                                <span class="candidate-status status-interview">Собеседование</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Колонка с деталями кандидата -->
+                    <div class="details-column">
+                        <div class="candidate-header">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="candidate-big-photo" alt="Иван Иванов">
+                            <div class="candidate-main-info">
+                                <h2>Иванов Иван Петрович</h2>
+                                <p class="position">Frontend-разработчик</p>
+                                <p class="status">Новый кандидат</p>
+                            </div>
+                        </div>
+
+                        <div class="candidate-details">
+                            <div class="detail-section contact-info">
+                                <h3>Контактная информация</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Телефон:</span>
+                                    <span class="detail-value phone">+375 (29) 123-45-67</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Email:</span>
+                                    <span class="detail-value email">ivanov@example.by</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Город:</span>
+                                    <span class="detail-value city">Минск</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-section professional-info">
+                                <h3>Профессиональная информация</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Зарплатные ожидания:</span>
+                                    <span class="detail-value salary">4 500 BYN</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Опыт работы:</span>
+                                    <span class="detail-value experience">5 лет</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Навыки:</span>
+                                    <span class="detail-value skills">JavaScript, React, TypeScript</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Уровень английского:</span>
+                                    <span class="detail-value english">B2 (Средне-продвинутый)</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-section education-info">
+                                <h3>Образование</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Учебное заведение:</span>
+                                    <span class="detail-value university">БГУ, ФПМИ</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Год окончания:</span>
+                                    <span class="detail-value graduation-year">2018</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Специальность:</span>
+                                    <span class="detail-value specialty">Прикладная информатика</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-section history-info">
+                                <h3>История взаимодействия</h3>
+                                <div class="history-steps">
+                                    <div class="history-step">
+                                        <div class="step-circle step-active">1</div>
+                                        <div class="step-date">25.06.2023</div>
+                                        <div class="step-event">Добавлен в систему</div>
+                                    </div>
+                                    <div class="history-step">
+                                        <div class="step-circle">2</div>
+                                        <div class="step-date">26.06.2023</div>
+                                        <div class="step-event">Просмотр резюме</div>
+                                    </div>
+                                    <div class="history-step">
+                                        <div class="step-circle">3</div>
+                                        <div class="step-date">27.06.2023</div>
+                                        <div class="step-event">Тех. собеседование</div>
+                                    </div>
+                                    <div class="history-step">
+                                        <div class="step-circle">4</div>
+                                        <div class="step-date">28.06.2023</div>
+                                        <div class="step-event">Решение</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Колонка с перепиской -->
+                    <div class="messages-column">
+                        <div class="messages-header">
+                            <h3>Переписка</h3>
+                            <button class="new-message-btn">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                        <div class="messages-list">
+                            <div class="message message-incoming">
+                                <div class="message-text">Здравствуйте, меня заинтересовала вакансия. Отправил резюме.</div>
+                                <div class="message-meta">10:30</div>
+                            </div>
+                            <div class="message message-outgoing">
+                                <div class="message-text">Спасибо за отклик! Мы рассмотрим ваше резюме и свяжемся с вами.</div>
+                                <div class="message-meta">11:45</div>
+                            </div>
+                            <div class="message message-incoming">
+                                <div class="message-text">Хотел бы уточнить сроки рассмотрения моего резюме.</div>
+                                <div class="message-meta">12:20</div>
+                            </div>
+                        </div>
+                        <div class="message-input">
+                            <input type="text" placeholder="Написать сообщение...">
+                            <button class="send-btn">
+                                <i class="material-icons">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>

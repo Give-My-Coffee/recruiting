@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудники - Кадры</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Шапка */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #1a365d;
+            color: white;
+            height: 70px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #2c5282;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .company-name {
+            font-weight: 600;
+            font-size: 18px;
+            color: white;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #2c5282;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-right: 20px;
+            transition: all 0.3s;
+        }
+
+        .search-box:hover {
+            background-color: #3182ce;
+        }
+
+        .search-box i {
+            color: #cbd5e0;
+            font-size: 20px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            margin-left: 8px;
+            outline: none;
+            width: 200px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #a0aec0;
+        }
+
+        .settings-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #cbd5e0;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .settings-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .settings-btn i {
+            font-size: 22px;
+        }
+
+        /* Основное содержимое */
+        .main-content {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Боковое меню */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+
+        .menu-item:hover {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .menu-item.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .menu-item i.material-icons {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .menu-item span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Область контента */
+        .content-area {
+            flex: 1;
+            padding: 20px 30px;
+            overflow-y: auto;
+            background-color: #f8fafc;
+        }
+
+        /* Заголовок страницы */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 24px;
+            color: #1a365d;
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn.primary {
+            background-color: #2b6cb0;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background-color: #2c5282;
+        }
+
+        .btn i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Контейнер сотрудников */
+        .employees-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        /* Фильтры */
+        .filters-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            background-color: #f7fafc;
+        }
+
+        .search-box.light {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+        }
+
+        .search-box.light i {
+            color: #718096;
+        }
+
+        .search-box.light input {
+            color: #2d3748;
+        }
+
+        .search-box.light input::placeholder {
+            color: #a0aec0;
+        }
+
+        .department-filter {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            color: #4a5568;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .department-filter:hover {
+            border-color: #bee3f8;
+        }
+
+        /* Основной контент сотрудников */
+        .employees-content {
+            display: flex;
+            min-height: calc(100vh - 220px);
+        }
+
+        /* Левая колонка - отделы */
+        .departments-sidebar {
+            width: 250px;
+            padding: 15px;
+            border-right: 1px solid #e2e8f0;
+            background-color: #f7fafc;
+        }
+
+        .departments-sidebar h3 {
+            font-size: 15px;
+            color: #4a5568;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .department-item {
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .department-item i {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #718096;
+        }
+
+        .department-item:hover {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .department-item.active {
+            background-color: #2b6cb0;
+            color: white;
+        }
+
+        .department-item.active i {
+            color: white;
+        }
+
+        /* Правая часть - детали сотрудника */
+        .employee-details {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Заголовок сотрудника */
+        .employee-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .employee-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #e3f2fd;
+        }
+
+        .employee-info {
+            flex: 1;
+        }
+
+        .employee-info h2 {
+            font-size: 22px;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+
+        .employee-position {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .employee-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-work {
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-vacation {
+            background-color: #bee3f8;
+            color: #2b6cb0;
+        }
+
+        .status-sick {
+            background-color: #fed7d7;
+            color: #9b2c2c;
+        }
+
+        /* Секции информации */
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-section h3 {
+            font-size: 16px;
+            color: #1a365d;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table tr:not(:last-child) {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-table td {
+            padding: 12px 0;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            width: 40%;
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .info-table td:last-child {
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        /* Кнопки действий */
+        .employee-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn.secondary {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn.secondary:hover {
+            background-color: #f7fafc;
+        }
+
+        .btn.icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn.icon:hover {
+            background-color: #f7fafc;
+        }
+
+        /* Список сотрудников (альтернативный вид) */
+        .employees-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .employee-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: #bee3f8;
+        }
+
+        .employee-card.active {
+            border-left: 3px solid #2b6cb0;
+            background-color: #ebf8ff;
+        }
+
+        .employee-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .employee-card-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #e3f2fd;
+        }
+
+        .employee-card-info h3 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 3px;
+        }
+
+        .employee-card-info p {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .employee-card-department {
+            font-size: 13px;
+            color: #4a5568;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .employee-card-department i {
+            margin-right: 5px;
+            font-size: 16px;
+            color: #718096;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .employees-content {
+                flex-direction: column;
+            }
+
+            .departments-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .department-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .department-item {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .search-box {
+                margin-right: 10px;
+            }
+
+            .search-box input {
+                width: 150px;
+            }
+
+            .content-area {
+                padding: 15px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .filters-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .department-filter {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">Б</div>
+                    <span class="company-name">Кадры</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Поиск...">
+                </div>
+                <button class="settings-btn">
+                    <i class="material-icons">settings</i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Боковое меню -->
+            <aside class="sidebar menu">
+                <div class="menu-section">
+                    <a href="index.html" class="menu-item">
+                        <i class="material-icons">home</i>
+                        <span>Главная страница</span>
+                    </a>
+                    <a href="tasks.html" class="menu-item">
+                        <i class="material-icons">assignment</i>
+                        <span>Задачи</span>
+                    </a>
+                    <a href="calendar.html" class="menu-item">
+                        <i class="material-icons">calendar_today</i>
+                        <span>Календарь</span>
+                    </a>
+                    <a href="candidate-dashboard.html" class="menu-item">
+                        <i class="material-icons">work</i>
+                        <span>Вакансии</span>
+                    </a>
+                    <a href="employees.html" class="menu-item active">
+                        <i class="material-icons">people</i>
+                        <span>Сотрудники</span>
+                    </a>
+                    <a href="interviews.html" class="menu-item">
+                        <i class="material-icons">record_voice_over</i>
+                        <span>Интервью</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <i class="material-icons">assessment</i>
+                        <span>Отчёты</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Основное содержимое страницы сотрудников -->
+            <div class="content-area">
+                <div class="page-header">
+                    <h1>Сотрудники</h1>
+                    <button class="btn primary">
+                        <i class="material-icons">add</i> Добавить сотрудника
+                    </button>
+                </div>
+
+                <div class="employees-container">
+                    <!-- Фильтры и поиск -->
+                    <div class="filters-row">
+                        <div class="search-box light">
+                            <i class="material-icons">search</i>
+                            <input type="text" placeholder="Поиск сотрудников...">
+                        </div>
+                        <select class="department-filter">
+                            <option value="all">Все отделы</option>
+                            <option value="it">IT</option>
+                            <option value="hr">HR</option>
+                            <option value="marketing">Маркетинг</option>
+                            <option value="design">Дизайн</option>
+                        </select>
+                    </div>
+
+                    <div class="employees-content">
+                        <!-- Левая колонка с отделами -->
+                        <div class="departments-sidebar">
+                            <h3>Отделы</h3>
+                            <div class="department-item active">
+                                <i class="material-icons">group</i>
+                                Все сотрудники
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">code</i>
+                                IT отдел
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">people_alt</i>
+                                HR отдел
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">campaign</i>
+                                Маркетинг
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">palette</i>
+                                Дизайн
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">account_balance</i>
+                                Финансы
+                            </div>
+                            
+                            <h3 style="margin-top: 30px;">Статус</h3>
+                            <div class="department-item">
+                                <i class="material-icons">hourglass_empty</i>
+                                На испытательном сроке
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">work</i>
+                                Работает
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">beach_access</i>
+                                В отпуске
+                            </div>
+                            <div class="department-item">
+                                <i class="material-icons">healing</i>
+                                На больничном
+                            </div>
+                        </div>
+
+                        <!-- Правая часть с информацией о сотруднике -->
+                        <div class="employee-details">
+                            <div class="employee-header">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" class="employee-photo" alt="Иванов И.П.">
+                                <div class="employee-info">
+                                    <h2>Иванов Иван Петрович</h2>
+                                    <p class="employee-position">Frontend-разработчик</p>
+                                    <span class="employee-status status-work">Работает</span>
+                                </div>
+                            </div>
+
+                            <div class="info-section">
+                                <h3>Контактная информация</h3>
+                                <table class="info-table">
+                                    <tr>
+                                        <td>Телефон:</td>
+                                        <td>+375 (29) 123-45-67</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>Ivanov@example.by</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Город:</td>
+                                        <td>Минск</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Адрес:</td>
+                                        <td>ул. Ленина, 15, кв. 42</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="info-section">
+                                <h3>Профессиональная информация</h3>
+                                <table class="info-table">
+                                    <tr>
+                                        <td>Зарплата:</td>
+                                        <td>4 500 BYN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Опыт работы:</td>
+                                        <td>5 лет</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Навыки:</td>
+                                        <td>JavaScript, React, TypeScript, HTML/CSS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Уровень английского:</td>
+                                        <td>B2 (Средне-продвинутый)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Дата приема:</td>
+                                        <td>15.06.2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Отдел:</td>
+                                        <td>IT отдел</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Должность:</td>
+                                        <td>Senior Frontend Developer</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="info-section">
+                                <h3>Образование</h3>
+                                <table class="info-table">
+                                    <tr>
+                                        <td>Учебное заведение:</td>
+                                        <td>БГУ, Факультет прикладной математики и информатики</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Год окончания:</td>
+                                        <td>2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Специальность:</td>
+                                        <td>Прикладная информатика</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Квалификация:</td>
+                                        <td>Инженер-программист</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="employee-actions">
+                                <button class="btn secondary">
+                                    <i class="material-icons">edit</i> Редактировать
+                                </button>
+                                <button class="btn icon">
+                                    <i class="material-icons">print</i>
+                                </button>
+                                <button class="btn icon">
+                                    <i class="material-icons">share</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

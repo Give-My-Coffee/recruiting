@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интервью | Кадры</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">R</div>
+                    <span class="company-name">Кадры</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Поиск интервью...">
+                </div>
+                <button class="settings-btn">
+                    <i class="material-icons">settings</i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Боковое меню -->
+            <aside class="sidebar menu">
+                <div class="menu-section">
+                    <a href="index.html" class="menu-item">
+                        <i class="material-icons">home</i>
+                        <span>Главная страница</span>
+                    </a>
+                    <a href="tasks.html" class="menu-item">
+                        <i class="material-icons">assignment</i>
+                        <span>Задачи</span>
+                    </a>
+                    <a href="calendar.html" class="menu-item">
+                        <i class="material-icons">calendar_today</i>
+                        <span>Календарь</span>
+                    </a>
+                    <a href="candidate-dashboard.html" class="menu-item">
+                        <i class="material-icons">work</i>
+                        <span>Вакансии</span>
+                    </a>
+                    <a href="employees.html" class="menu-item">
+                        <i class="material-icons">people</i>
+                        <span>Сотрудники</span>
+                    </a>
+                    <a href="interviews.html" class="menu-item active">
+                        <i class="material-icons">record_voice_over</i>
+                        <span>Интервью</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <i class="material-icons">assessment</i>
+                        <span>Отчёты</span>
+                    </a>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                <!-- Верхнее меню разделов -->
+                <div class="section-menu">
+                    <div class="section-tab" data-section="scheduled">Запланированные</div>
+                    <div class="section-tab active" data-section="video">Видеоответы</div>
+                    <div class="section-tab" data-section="tests">Тестовые задания</div>
+                    <div class="sort-dropdown">
+                        <button class="sort-btn">
+                            <i class="material-icons">sort</i>
+                            Сортировка
+                        </button>
+                        <div class="sort-options">
+                            <div class="sort-option">По дате (новые)</div>
+                            <div class="sort-option">По дате (старые)</div>
+                            <div class="sort-option">По вакансии</div>
+                            <div class="sort-option">По статусу</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="vacancy-categories">
+                    <div class="category active">Все</div>
+                    <div class="category">Frontend</div>
+                    <div class="category">Backend</div>
+                    <div class="category">Дизайн</div>
+                    <div class="category">Маркетинг</div>
+                    <div class="category">Аналитика</div>
+                    <div class="category">Менеджмент</div>
+                </div>
+
+                <!-- Контент видеоинтервью -->
+                <div class="interviews-container">
+                    <!-- Карточка интервью -->
+                    <div class="interview-card">
+                        <div class="interview-header">
+                            <div class="candidate-info">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="candidate-photo" alt="Иван Иванов">
+                                <div>
+                                    <h3>Иванов Иван Петрович</h3>
+                                    <p>Frontend-разработчик</p>
+                                </div>
+                            </div>
+                            <div class="interview-meta">
+                                <span class="interview-date">25.06.2023</span>
+                                <span class="interview-status status-new">Новое</span>
+                            </div>
+                        </div>
+                        
+                        <div class="questions-answers-container">
+                            <!-- Вопрос-ответ 1 -->
+                            <div class="question-answer-pair">
+                                <div class="question-box">
+                                    <div class="question-header">
+                                        <span class="question-number">Вопрос 1</span>
+                                        <span class="question-timestamp">00:45 - 02:30</span>
+                                    </div>
+                                    <div class="question-text">Расскажите о своем опыте работы с React.</div>
+                                </div>
+                                <div class="answer-box">
+                                    <div class="video-answer">
+                                        <video controls poster="https://via.placeholder.com/400x225?text=Video+Answer">
+                                            <source src="interview-video.mp4#t=45,150" type="video/mp4">
+                                            Ваш браузер не поддерживает видео.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Вопрос-ответ 2 -->
+                            <div class="question-answer-pair">
+                                <div class="question-box">
+                                    <div class="question-header">
+                                        <span class="question-number">Вопрос 2</span>
+                                        <span class="question-timestamp">03:15 - 05:20</span>
+                                    </div>
+                                    <div class="question-text">Как вы организуете структуру проекта?</div>
+                                </div>
+                                <div class="answer-box">
+                                    <div class="video-answer">
+                                        <video controls poster="https://via.placeholder.com/400x225?text=Video+Answer">
+                                            <source src="interview-video.mp4#t=195,320" type="video/mp4">
+                                            Ваш браузер не поддерживает видео.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Вопрос-ответ 3 -->
+                            <div class="question-answer-pair">
+                                <div class="question-box">
+                                    <div class="question-header">
+                                        <span class="question-number">Вопрос 3</span>
+                                        <span class="question-timestamp">06:10 - 08:45</span>
+                                    </div>
+                                    <div class="question-text">Пример вашего подхода к оптимизации.</div>
+                                </div>
+                                <div class="answer-box">
+                                    <div class="video-answer">
+                                        <video controls poster="https://via.placeholder.com/400x225?text=Video+Answer">
+                                            <source src="interview-video.mp4#t=370,525" type="video/mp4">
+                                            Ваш браузер не поддерживает видео.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="interview-actions">
+                            <button class="action-btn primary">
+                                <i class="material-icons">thumb_up</i>
+                                Одобрить
+                            </button>
+                            <button class="action-btn secondary">
+                                <i class="material-icons">thumb_down</i>
+                                Отклонить
+                            </button>
+                            <button class="action-btn">
+                                <i class="material-icons">comment</i>
+                                Комментарий
+                            </button>
+                            <button class="action-btn">
+                                <i class="material-icons">schedule</i>
+                                Запланировать
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка интервью -->
+                    <div class="interview-card">
+                        <div class="interview-header">
+                            <div class="candidate-info">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="candidate-photo" alt="Анна Петрова">
+                                <div>
+                                    <h3>Петрова Анна Константиновна</h3>
+                                    <p>UX/UI дизайнер</p>
+                                </div>
+                            </div>
+                            <div class="interview-meta">
+                                <span class="interview-date">24.06.2023</span>
+                                <span class="interview-status status-reviewed">Просмотрено</span>
+                            </div>
+                        </div>
+                        
+                        <div class="questions-answers-container">
+                            <!-- Вопрос-ответ 1 -->
+                            <div class="question-answer-pair">
+                                <div class="question-box">
+                                    <div class="question-header">
+                                        <span class="question-number">Вопрос 1</span>
+                                        <span class="question-timestamp">01:20 - 04:15</span>
+                                    </div>
+                                    <div class="question-text">Опишите ваш подход к созданию пользовательских интерфейсов.</div>
+                                </div>
+                                <div class="answer-box">
+                                    <div class="video-answer">
+                                        <video controls poster="https://via.placeholder.com/400x225?text=Video+Answer">
+                                            <source src="interview-video.mp4#t=80,255" type="video/mp4">
+                                            Ваш браузер не поддерживает видео.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Вопрос-ответ 2 -->
+                            <div class="question-answer-pair">
+                                <div class="question-box">
+                                    <div class="question-header">
+                                        <span class="question-number">Вопрос 2</span>
+                                        <span class="question-timestamp">05:30 - 07:45</span>
+                                    </div>
+                                    <div class="question-text">Как вы работаете с пользовательскими исследованиями?</div>
+                                </div>
+                                <div class="answer-box">
+                                    <div class="video-answer">
+                                        <video controls poster="https://via.placeholder.com/400x225?text=Video+Answer">
+                                            <source src="interview-video.mp4#t=330,465" type="video/mp4">
+                                            Ваш браузер не поддерживает видео.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="interview-actions">
+                            <button class="action-btn primary">
+                                <i class="material-icons">thumb_up</i>
+                                Одобрить
+                            </button>
+                            <button class="action-btn secondary">
+                                <i class="material-icons">thumb_down</i>
+                                Отклонить
+                            </button>
+                            <button class="action-btn">
+                                <i class="material-icons">comment</i>
+                                Комментарий
+                            </button>
+                            <button class="action-btn">
+                                <i class="material-icons">schedule</i>
+                                Запланировать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Дополнительные стили для страницы интервью */
+        .interviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .interview-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .interview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .candidate-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .candidate-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+        
+        .candidate-info p {
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        .interview-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        
+        .interview-date {
+            font-size: 13px;
+            color: #718096;
+        }
+        
+        .interview-status {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .status-new {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
+        
+        .status-reviewed {
+            background-color: #e6fffa;
+            color: #2c7a7b;
+        }
+        
+        /* Новые стили для вопросов и ответов */
+        .questions-answers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .question-answer-pair {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 20px;
+        }
+        
+        .question-answer-pair:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .question-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .answer-box {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #718096;
+        }
+        
+        .question-number {
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .question-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #2d3748;
+        }
+        
+        .video-answer video {
+            width: 100%;
+            border-radius: 6px;
+            background-color: #000;
+        }
+        
+        .interview-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .action-btn i {
+            font-size: 18px;
+        }
+        
+        .action-btn:hover {
+            background-color: #ebf8ff;
+            border-color: #bee3f8;
+            color: #2b6cb0;
+        }
+        
+        .action-btn.primary {
+            background-color: #2b6cb0;
+            color: white;
+            border-color: #2b6cb0;
+        }
+        
+        .action-btn.primary:hover {
+            background-color: #2c5282;
+        }
+        
+        .action-btn.secondary {
+            background-color: #e53e3e;
+            color: white;
+            border-color: #e53e3e;
+        }
+        
+        .action-btn.secondary:hover {
+            background-color: #c53030;
+        }
+        
+        @media (max-width: 768px) {
+            .interview-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .interview-meta {
+                align-items: flex-start;
+                width: 100%;
+            }
+            
+            .question-answer-pair {
+                flex-direction: column;
+            }
+            
+            .question-box, .answer-box {
+                min-width: 100%;
+            }
+            
+            .interview-actions {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Переключение между разделами
+            const sectionTabs = document.querySelectorAll('.section-tab');
+            sectionTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    sectionTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    // Здесь можно добавить логику загрузки соответствующего контента
+                });
+            });
+            
+            // Фильтрация по категориям
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    // Здесь можно добавить логику фильтрации
+                });
+            });
+            
+            // Обработка действий с интервью
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Логика обработки действий (одобрить/отклонить и т.д.)
+                });
+            });
+            
+            // Инициализация видео с временными метками
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.addEventListener('loadedmetadata', function() {
+                    // Можно добавить обработку метаданных видео
+                });
+            });
+        });
+    </script>
+</body>
+</html>
